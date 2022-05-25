@@ -8,8 +8,8 @@ internal class Program
         bool botis = false;
         while (!botis)
         {
-            botX = r.Next(0, 2);
-            botY = r.Next(0, 2);
+            botX = r.Next(0, 3);
+            botY = r.Next(0, 3);
             if (field[botY, botX] == " ")
             {
                 field[botY, botX] = "O";
@@ -19,7 +19,30 @@ internal class Program
     }
     static void WinCheck()
     {
-        Console.WriteLine("checked");
+        for (int i = 0; i < 2; i++)
+        {
+            if (field[i,0] == field[i,1] && field[i,0] == field[i,2] && field[i,0] != " ")
+            {
+                winner = field[i, 0];
+                ended = true;
+            }
+            if (field[0,i] == field[1,i] && field[0,i] == field[2,i] && field[0,i] != " ")
+            {
+                winner = field[0, i];
+                ended = true;
+            }
+        }
+        if (field[0,0] == field[1,1] && field[0,0] == field[2,2] && field[0,0] != " ")
+        {
+            winner = field[0, 0];
+            ended = true;
+        }
+
+        if (field[0,2] == field[1,1] && field[0,2] == field[2,0] && field[0,2] != " ")
+        {
+            winner = field[0, 2];
+            ended = true;
+        }
     }
 
     static void Print()
@@ -27,6 +50,8 @@ internal class Program
         Console.Clear();
         Console.Write("   1   2   3  x\n1  {0} | {1} | {2} \n  ---|---|---\n2  {3} | {4} | {5} \n  ---|---|---\n3  {6} | {7} | {8} \ny\n\n",field[0,0],field[0,1],field[0,2],field[1,0],field[1,1],field[1,2],field[2,0],field[2,1],field[2,2]);
     }
+
+    static string winner = "error";
     static string[,] field = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
     static int x;
     static int y;
@@ -87,5 +112,8 @@ internal class Program
                 Console.ReadKey();
             }
         }
+        Print();
+        Console.WriteLine($"The winner is {winner}");
+        Console.ReadKey();
     }
 }
