@@ -1,0 +1,15 @@
+/home/michal/RiderProjects/tik tak toe/tik tak toe/obj/Debug/net6.0/tik tak toe.csproj.AssemblyReference.cache
+/home/michal/RiderProjects/tik tak toe/tik tak toe/obj/Debug/net6.0/tik tak toe.GeneratedMSBuildEditorConfig.editorconfig
+/home/michal/RiderProjects/tik tak toe/tik tak toe/obj/Debug/net6.0/tik tak toe.AssemblyInfoInputs.cache
+/home/michal/RiderProjects/tik tak toe/tik tak toe/obj/Debug/net6.0/tik tak toe.AssemblyInfo.cs
+/home/michal/RiderProjects/tik tak toe/tik tak toe/obj/Debug/net6.0/tik tak toe.csproj.CoreCompileInputs.cache
+/home/michal/RiderProjects/tik tak toe/tik tak toe/bin/Debug/net6.0/tik tak toe
+/home/michal/RiderProjects/tik tak toe/tik tak toe/bin/Debug/net6.0/tik tak toe.deps.json
+/home/michal/RiderProjects/tik tak toe/tik tak toe/bin/Debug/net6.0/tik tak toe.runtimeconfig.json
+/home/michal/RiderProjects/tik tak toe/tik tak toe/bin/Debug/net6.0/tik tak toe.dll
+/home/michal/RiderProjects/tik tak toe/tik tak toe/bin/Debug/net6.0/ref/tik tak toe.dll
+/home/michal/RiderProjects/tik tak toe/tik tak toe/bin/Debug/net6.0/tik tak toe.pdb
+/home/michal/RiderProjects/tik tak toe/tik tak toe/obj/Debug/net6.0/tik tak toe.dll
+/home/michal/RiderProjects/tik tak toe/tik tak toe/obj/Debug/net6.0/ref/tik tak toe.dll
+/home/michal/RiderProjects/tik tak toe/tik tak toe/obj/Debug/net6.0/tik tak toe.pdb
+/home/michal/RiderProjects/tik tak toe/tik tak toe/obj/Debug/net6.0/tik tak toe.genruntimeconfig.cache
