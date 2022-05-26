@@ -1,15 +1,24 @@
-﻿using System;
-using System.Runtime.InteropServices;
-
-internal class Program
+﻿internal class Program
 {
+    #region Variables
+        static string winner = "error";
+        static string[,] field = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
+        static short x;
+        static short y;
+        static int botX;
+        static int botY;
+        static bool ended = false;
+        static Random random = new Random();
+    
+    #endregion
+    
     static void BotPlay()
     {
         bool botis = false;
         while (!botis)
         {
-            botX = r.Next(0, 3);
-            botY = r.Next(0, 3);
+            botX = random.Next(0, 3);
+            botY = random.Next(0, 3);
             if (field[botY, botX] == " ")
             {
                 field[botY, botX] = "O";
@@ -51,14 +60,7 @@ internal class Program
         Console.Write("   1   2   3  x\n1  {0} | {1} | {2} \n  ---|---|---\n2  {3} | {4} | {5} \n  ---|---|---\n3  {6} | {7} | {8} \ny\n\n",field[0,0],field[0,1],field[0,2],field[1,0],field[1,1],field[1,2],field[2,0],field[2,1],field[2,2]);
     }
 
-    static string winner = "error";
-    static string[,] field = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
-    static int x;
-    static int y;
-    static int botX;
-    static int botY;
-    static bool ended = false;
-    static Random r = new Random();
+    
     static void Main(string[] args)
     {
         while (!ended)
@@ -68,7 +70,7 @@ internal class Program
             while (!xis)
             {
                 Console.Write("x=");
-                x = Convert.ToInt16(Console.ReadLine());
+                short.TryParse(Console.ReadLine(), out x);
                 if (x > 0 && x < 4)
                 {
                     x--;
@@ -83,7 +85,7 @@ internal class Program
             while (!yis)
             {
                 Console.Write("y=");
-                y = Convert.ToInt16(Console.ReadLine());
+                short.TryParse(Console.ReadLine(), out y);
                 if (y > 0 && y < 4)
                 {
                     y--;
