@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98f1ecff-38a7-4b31-815d-85444aacadc6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/tic tac toe/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tic tac toe/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tic tac toe/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/tic tac toe/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tic tac toe/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/tic tac toe/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tic tac toe/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/tic tac toe/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tic tac toe/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/tic tac toe/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tic tac toe/obj/tic tac toe.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/tic tac toe/obj/tic tac toe.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tic tac toe/obj/tic tac toe.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/tic tac toe/obj/tic tac toe.csproj.nuget.g.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.tic tac toe/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.tic tac toe/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1653591570205</updated>
-      <workItem from="1653591573233" duration="7000" />
+      <workItem from="1653591573233" duration="428000" />
     </task>
     <servers />
   </component>
