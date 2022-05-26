@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DESKTOP-MICHAL\\RiderProjects\\tik-tak-toe\\tik tak toe\\tik tak toe.csproj": {}
+    "/home/michal/RiderProjects/tic-tac-toe/tik tak toe/tik tak toe.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DESKTOP-MICHAL\\RiderProjects\\tik-tak-toe\\tik tak toe\\tik tak toe.csproj": {
+    "/home/michal/RiderProjects/tic-tac-toe/tik tak toe/tik tak toe.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DESKTOP-MICHAL\\RiderProjects\\tik-tak-toe\\tik tak toe\\tik tak toe.csproj",
+        "projectUniqueName": "/home/michal/RiderProjects/tic-tac-toe/tik tak toe/tik tak toe.csproj",
         "projectName": "tik tak toe",
-        "projectPath": "C:\\Users\\DESKTOP-MICHAL\\RiderProjects\\tik-tak-toe\\tik tak toe\\tik tak toe.csproj",
-        "packagesPath": "C:\\Users\\DESKTOP-MICHAL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DESKTOP-MICHAL\\RiderProjects\\tik-tak-toe\\tik tak toe\\obj\\",
+        "projectPath": "/home/michal/RiderProjects/tic-tac-toe/tik tak toe/tik tak toe.csproj",
+        "packagesPath": "/home/michal/.nuget/packages/",
+        "outputPath": "/home/michal/RiderProjects/tic-tac-toe/tik tak toe/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DESKTOP-MICHAL\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/michal/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -54,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/6.0.105/RuntimeIdentifierGraph.json"
         }
       }
     }
