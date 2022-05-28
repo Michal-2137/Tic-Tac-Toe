@@ -1,0 +1,3 @@
+﻿add multiplayer
+ability to choose cross or circle
+better input system
