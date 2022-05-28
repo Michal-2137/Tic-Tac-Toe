@@ -216,11 +216,16 @@ internal class Program
             GetPlayerInput();
             if (PlaceXorO())
             {
+                Print();
+                Thread.Sleep(1000);
                 WinCheck();
                 BotPlay();
                 WinCheck();
             }
-            Thread.Sleep(1000);
+            else
+            {
+                Thread.Sleep(1500);
+            }
         }
         Print();
         Console.WriteLine($"The winner is {winner}");
