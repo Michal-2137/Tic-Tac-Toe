@@ -93,6 +93,20 @@
             }
         }
     }
+
+    static bool PlaceXorO()
+    {
+        if (field[y, x] == " ")
+        {
+            field[y, x] = "X";
+            return true;
+        }
+        else
+        {
+            Console.WriteLine("choose empty field");
+            return false;
+        }
+    }
     
     static void Main(string[] args)
     {
@@ -100,23 +114,13 @@
         {
             Print();
             GetPlayerInput();
-            if(field[y,x] == " ")
+            if (PlaceXorO())
             {
-                field[y, x] = "X";
                 WinCheck();
-                if (!ended)
-                {
-                    Print();
-                    Thread.Sleep(1000);
-                    BotPlay();
-                    WinCheck();
-                }
+                BotPlay();
+                WinCheck();
             }
-            else
-            {
-                Console.WriteLine("choose empty field");
-                Thread.Sleep(1000);
-            }
+            Thread.Sleep(1000);
         }
         Print();
         Console.WriteLine($"The winner is {winner}");
