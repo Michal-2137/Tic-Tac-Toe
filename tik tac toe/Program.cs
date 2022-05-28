@@ -1,7 +1,10 @@
-﻿internal class Program
+﻿using CompassModKit.Utilities.ConsoleUtil;
+
+internal class Program
 {
     #region Variables
         static string winner = "error";
+        private static bool[,] chose = {{false, false, false}, {false, false, false}, {false, false, false}};
         static string[,] field = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
         static short x;
         static short y;
@@ -57,41 +60,138 @@
     static void Print()
     {
         Console.Clear();
-        Console.Write("   1   2   3  x\n1  {0} | {1} | {2} \n  ---|---|---\n2  {3} | {4} | {5} \n  ---|---|---\n3  {6} | {7} | {8} \ny\n\n",field[0,0],field[0,1],field[0,2],field[1,0],field[1,1],field[1,2],field[2,0],field[2,1],field[2,2]);
+        Console.Write("  ");
+        if (chose[0,0])
+        {
+            ConsoleUtil.Write(field[0,0], ConsoleColor.Black, ConsoleColor.White);
+        }
+        else
+        {
+            Console.Write(field[0,0]);
+        }
+        Console.Write(" | ");
+        if (chose[0,1])
+        {
+            ConsoleUtil.Write(field[0,1], ConsoleColor.Black, ConsoleColor.White);
+        }
+        else
+        {
+            Console.Write(field[0,1]);
+        }
+        Console.Write(" | ");
+        if (chose[0,2])
+        {
+            ConsoleUtil.Write(field[0,2], ConsoleColor.Black, ConsoleColor.White);
+        }
+        else
+        {
+            Console.Write(field[0,2]);
+        }
+        Console.Write(" \n ---|---|---\n  ");
+        if (chose[1,0])
+        {
+            ConsoleUtil.Write(field[1,0], ConsoleColor.Black, ConsoleColor.White);
+        }
+        else
+        {
+            Console.Write(field[1,0]);
+        }
+        Console.Write(" | ");
+        if (chose[1,1])
+        {
+            ConsoleUtil.Write(field[1,1], ConsoleColor.Black, ConsoleColor.White);
+        }
+        else
+        {
+            Console.Write(field[1,1]);
+        }
+        Console.Write(" | ");
+        if (chose[1,2])
+        {
+            ConsoleUtil.Write(field[1,2], ConsoleColor.Black, ConsoleColor.White);
+        }
+        else
+        {
+            Console.Write(field[1,2]);
+        }
+        Console.Write(" \n ---|---|---\n  ");
+        if (chose[2,0])
+        {
+            ConsoleUtil.Write(field[2,0], ConsoleColor.Black, ConsoleColor.White);
+        }
+        else
+        {
+            Console.Write(field[2,0]);
+        }
+        Console.Write(" | ");
+        if (chose[2,1])
+        {
+            ConsoleUtil.Write(field[2,1], ConsoleColor.Black, ConsoleColor.White);
+        }
+        else
+        {
+            Console.Write(field[2,1]);
+        }
+        Console.Write(" | ");
+        if (chose[2,2])
+        {
+            ConsoleUtil.Write(field[2,2], ConsoleColor.Black, ConsoleColor.White);
+        }
+        else
+        {
+            Console.Write(field[2,2]);
+        }
+        Console.Write(" \n\n");
     }
 
     static void GetPlayerInput()
     {
-        bool xis = false;
-        while (!xis)
+        bool choosen = false;
+        short choseX = 0;
+        short choseY = 0;
+        while (!choosen)
         {
-            Console.Write("x=");
-            short.TryParse(Console.ReadLine(), out x);
-            if (x > 0 && x < 4)
+            chose[choseY, choseX] = true;
+            Print();
+            chose[choseY, choseX] = false;
+            switch (Console.ReadKey().Key)
             {
-                x--;
-                xis = true;
-            }
-            else
-            {
-                Console.WriteLine("choose x between 1 and 3");
+                case ConsoleKey.W:
+                case ConsoleKey.UpArrow:
+                    if (choseY > 0)
+                    {
+                        choseY--;
+                    }
+                    break;
+                case ConsoleKey.S:
+                case ConsoleKey.DownArrow:
+                    if (choseY < 2)
+                    {
+                        choseY++;
+                    }
+                    break;
+                case ConsoleKey.A:
+                case ConsoleKey.LeftArrow:
+                    if (choseX > 0)
+                    {
+                        choseX--;
+                    }
+                    break;
+                case ConsoleKey.D:
+                case ConsoleKey.RightArrow:
+                    if (choseX < 2)
+                    {
+                        choseX++;
+                    }
+                    break;
+                case  ConsoleKey.Enter:
+                    x = choseX;
+                    y = choseY;
+                    choosen = true;
+                    break;
             }
         }
-        bool yis = false;
-        while (!yis)
-        {
-            Console.Write("y=");
-            short.TryParse(Console.ReadLine(), out y);
-            if (y > 0 && y < 4)
-            {
-                y--;
-                yis = true;
-            }
-            else
-            {
-                Console.WriteLine("choose y between 1 and 3");
-            }
-        }
+        chose[choseY, choseX] = false;
     }
 
     static bool PlaceXorO()
