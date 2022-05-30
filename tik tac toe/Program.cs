@@ -3,7 +3,9 @@
 internal class Program
 {
     #region Variables
-        static string winner = "error";
+
+        static string wintext = "";
+        static string winner = "";
         private static bool[,] chose = {{false, false, false}, {false, false, false}, {false, false, false}};
         static string[,] field = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
         static short x;
@@ -31,29 +33,52 @@ internal class Program
     }
     static void WinCheck()
     {
+        void end()
+        {
+            wintext = $"the winner is {winner}!";
+            ended = true;
+        }
+
         for (int i = 0; i < 2; i++)
         {
             if (field[i,0] == field[i,1] && field[i,0] == field[i,2] && field[i,0] != " ")
             {
                 winner = field[i, 0];
-                ended = true;
+                end();
             }
             if (field[0,i] == field[1,i] && field[0,i] == field[2,i] && field[0,i] != " ")
             {
                 winner = field[0, i];
-                ended = true;
+                end();
             }
         }
         if (field[0,0] == field[1,1] && field[0,0] == field[2,2] && field[0,0] != " ")
         {
             winner = field[0, 0];
-            ended = true;
+            end();
         }
 
         if (field[0,2] == field[1,1] && field[0,2] == field[2,0] && field[0,2] != " ")
         {
             winner = field[0, 2];
-            ended = true;
+            end();
+        }
+        
+        if (!ended)
+        {
+            bool draw = true;
+            foreach (string f in field)
+            {
+                if (f == " ")
+                {
+                    draw = false;
+                }
+            }
+            if (draw)
+            {
+                wintext = "Draw!";
+                ended = true;
+            }
         }
     }
 
@@ -142,6 +167,7 @@ internal class Program
             Console.Write(field[2,2]);
         }
         Console.Write(" \n\n");
+        Console.WriteLine(wintext);
     }
 
     static void GetPlayerInput()
@@ -217,10 +243,13 @@ internal class Program
             if (PlaceXorO())
             {
                 Print();
-                Thread.Sleep(1000);
                 WinCheck();
-                BotPlay();
-                WinCheck();
+                if (!ended)
+                {
+                    Thread.Sleep(1000);
+                    BotPlay();
+                    WinCheck();
+                }
             }
             else
             {
@@ -228,7 +257,6 @@ internal class Program
             }
         }
         Print();
-        Console.WriteLine($"The winner is {winner}");
         Console.ReadKey();
     }
 }
