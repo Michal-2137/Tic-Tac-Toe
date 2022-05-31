@@ -17,6 +17,8 @@ internal class Program
     
     #endregion
     
+    
+    //With this function bot moves
     static void BotPlay()
     {
         bool botis = false;
@@ -31,6 +33,9 @@ internal class Program
             }
         }
     }
+    
+    
+    //This function checks if someone won
     static void WinCheck()
     {
         void end()
@@ -82,6 +87,8 @@ internal class Program
         }
     }
 
+    
+    //This function prints board
     static void Print()
     {
         Console.Clear();
@@ -170,6 +177,8 @@ internal class Program
         Console.WriteLine(wintext);
     }
 
+    
+    //This function gets player input
     static void GetPlayerInput()
     {
         bool choosen = false;
@@ -220,6 +229,8 @@ internal class Program
         chose[choseY, choseX] = false;
     }
 
+    
+    //This function places X or ) on board
     static bool PlaceXorO()
     {
         if (field[y, x] == " ")
