@@ -1,5 +1,6 @@
 - [x] add multiplayer
 - [ ] ability to choose cross or circle
 - [x] new input system
-- [ ] medium mode
+- [x] medium mode
 - [ ] hard mode
+- [ ] sometimes randomly not showing that middle bot won
