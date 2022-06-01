@@ -1,4 +1,4 @@
-﻿namespace CompassModKit.Utilities.ConsoleUtil
+﻿namespace Compass.Utilities.ConsoleUtil
 {
 	public static class ConsoleUtil
     {

@@ -1,4 +1,4 @@
-﻿using CompassModKit.Utilities.ConsoleUtil;
+﻿using Compass.Utilities.ConsoleUtil;
 
 internal class Program
 {
@@ -89,91 +89,91 @@ internal class Program
         }
     }
 
-    
+
     //This function prints board
     static void Print()
     {
         Console.Clear();
         Console.Write("  ");
-        if (choose[0,0])
+        if (choose[0, 0])
         {
-            ConsoleUtil.Write(field[0,0], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[0, 0]);
         }
         else
         {
-            Console.Write(field[0,0]);
+            Console.Write(field[0, 0]);
         }
         Console.Write(" | ");
-        if (choose[0,1])
+        if (choose[0, 1])
         {
-            ConsoleUtil.Write(field[0,1], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[0, 1]);
         }
         else
         {
-            Console.Write(field[0,1]);
+            Console.Write(field[0, 1]);
         }
         Console.Write(" | ");
-        if (choose[0,2])
+        if (choose[0, 2])
         {
-            ConsoleUtil.Write(field[0,2], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[0, 2]);
         }
         else
         {
-            Console.Write(field[0,2]);
+            Console.Write(field[0, 2]);
         }
-        Console.Write(" \n ---|---|---\n  ");
-        if (choose[1,0])
+        Console.Write(" \n ---+---+---\n  ");
+        if (choose[1, 0])
         {
-            ConsoleUtil.Write(field[1,0], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[1, 0]);
         }
         else
         {
             Console.Write(field[1,0]);
         }
         Console.Write(" | ");
-        if (choose[1,1])
+        if (choose[1, 1])
         {
-            ConsoleUtil.Write(field[1,1], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[1, 1]);
         }
         else
         {
-            Console.Write(field[1,1]);
+            Console.Write(field[1, 1]);
         }
         Console.Write(" | ");
-        if (choose[1,2])
+        if (choose[1, 2])
         {
-            ConsoleUtil.Write(field[1,2], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[1, 2]);
         }
         else
         {
-            Console.Write(field[1,2]);
+            Console.Write(field[1, 2]);
         }
-        Console.Write(" \n ---|---|---\n  ");
-        if (choose[2,0])
+        Console.Write(" \n ---+---+---\n  ");
+        if (choose[2, 0])
         {
-            ConsoleUtil.Write(field[2,0], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[2, 0]);
         }
         else
         {
-            Console.Write(field[2,0]);
+            Console.Write(field[2, 0]);
         }
         Console.Write(" | ");
-        if (choose[2,1])
+        if (choose[2, 1])
         {
-            ConsoleUtil.Write(field[2,1], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[2, 1]);
         }
         else
         {
-            Console.Write(field[2,1]);
+            Console.Write(field[2, 1]);
         }
         Console.Write(" | ");
-        if (choose[2,2])
+        if (choose[2, 2])
         {
-            ConsoleUtil.Write(field[2,2], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[2, 2]);
         }
         else
         {
-            Console.Write(field[2,2]);
+            Console.Write(field[2, 2]);
         }
         Console.Write(" \n\n");
         Console.WriteLine(wintext);
@@ -256,21 +256,16 @@ internal class Program
         while (!end)
         {
             Console.Clear();
+
+            ConsoleUtil.WriteLine("Use W-S/UpArrow-DownArrow to change modes", ConsoleColor.Red);
+
             if (selected == 1)
             {
-                ConsoleUtil.WriteLine("one player mode", ConsoleColor.Black, ConsoleColor.White);
+                ConsoleUtil.WriteLine("one player mode");
             }
-            else
+            else if (selected == 2)
             {
-                Console.WriteLine("one player mode");
-            }
-            if (selected == 2)
-            {
-                ConsoleUtil.WriteLine("two player mode", ConsoleColor.Black, ConsoleColor.White);
-            }
-            else
-            {
-                Console.WriteLine("two player mode");
+                ConsoleUtil.WriteLine("two player mode");
             }
 
             switch (Console.ReadKey().Key)
