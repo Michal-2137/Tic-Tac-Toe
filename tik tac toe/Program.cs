@@ -201,40 +201,59 @@ internal class Program
     //With this function bot on medium mode moves
     static void MediumBotMove()
     {
-        int botX;
-        int botY;
-        bool botis = false;
-        while (!botis)
+        Thread.Sleep(1000);
+        short i = 0;
+        bool placed = false;
+        void check(string sign, string sign2)
         {
-            botX = random.Next(0, 3);
-            botY = random.Next(0, 3);
-            if (field[botY, botX] == " ")
+            while (i < 3 && !placed)
             {
-                field[botY, botX] = "O";
-                botis = true;
+                short counter2 = 0;
+                short counter = 0;
+                for (short j=0;j<3;j++)
+                {
+                    if (field[i,j] == sign)
+                    {
+                        counter++;
+                    }
+
+                    if (field[i,j] == sign2)
+                    {
+                        counter2++;
+                    }
+                }
+                
+                if (counter == 2 && counter2 == 0)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (field[i,j] == " ")
+                        {
+                            field[i, j] = sign;
+                            placed = true;
+                        }
+                    }
+                }
+
+                i++;
             }
         }
-        Print();
+        check("O", "X");
+        if (!placed)
+        {
+            check("X", "O");
+        }
+        if (!placed)
+        {
+            EasyBotMove();
+        }
     }
-    
-    
+
+
     //With this function bot on hard mode moves
     static void HardBotMove()
     {
-        int botX;
-        int botY;
-        bool botis = false;
-        while (!botis)
-        {
-            botX = random.Next(0, 3);
-            botY = random.Next(0, 3);
-            if (field[botY, botX] == " ")
-            {
-                field[botY, botX] = "O";
-                botis = true;
-            }
-        }
-        Print();
+
     }
     
     
@@ -316,11 +335,11 @@ internal class Program
             }
             if (SelectedMode == 3)
             {
-                ConsoleUtil.WriteLine("hard mode not working", ConsoleColor.Black, ConsoleColor.White);
+                ConsoleUtil.WriteLine("hard mode (not working)", ConsoleColor.Black, ConsoleColor.White);
             }
             else
             {
-                Console.WriteLine("hard mode not working");
+                Console.WriteLine("hard mode (not working)");
             }
             if (SelectedMode == 4)
             {
