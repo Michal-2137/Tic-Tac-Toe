@@ -247,6 +247,7 @@ internal class Program
         }
     }
 
+    
     //This function chooses game mode
     static void ChooseGameMode()
     {
