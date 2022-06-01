@@ -32,6 +32,7 @@ internal class Program
                 botis = true;
             }
         }
+        Print();
     }
     
     
@@ -178,93 +179,86 @@ internal class Program
     }
 
     
-    //This function gets player input
-    static void GetPlayerInput()
+    //This function let player move
+    static void PlayerMove(string sign)
     {
         bool choosen = false;
+        bool placed = false;
         short choseX = 0;
         short choseY = 0;
-        while (!choosen)
+        while (!placed)
         {
-            chose[choseY, choseX] = true;
-            Print();
-            chose[choseY, choseX] = false;
-            switch (Console.ReadKey().Key)
+            while (!choosen)
             {
-                case ConsoleKey.W:
-                case ConsoleKey.UpArrow:
-                    if (choseY > 0)
-                    {
-                        choseY--;
-                    }
-                    break;
-                case ConsoleKey.S:
-                case ConsoleKey.DownArrow:
-                    if (choseY < 2)
-                    {
-                        choseY++;
-                    }
-                    break;
-                case ConsoleKey.A:
-                case ConsoleKey.LeftArrow:
-                    if (choseX > 0)
-                    {
-                        choseX--;
-                    }
-                    break;
-                case ConsoleKey.D:
-                case ConsoleKey.RightArrow:
-                    if (choseX < 2)
-                    {
-                        choseX++;
-                    }
-                    break;
-                case  ConsoleKey.Enter:
-                    x = choseX;
-                    y = choseY;
-                    choosen = true;
-                    break;
+                chose[choseY, choseX] = true;
+                Print();
+                chose[choseY, choseX] = false;
+                switch (Console.ReadKey().Key)
+                {
+                    case ConsoleKey.W:
+                    case ConsoleKey.UpArrow:
+                        if (choseY > 0)
+                        {
+                            choseY--;
+                        }
+
+                        break;
+                    case ConsoleKey.S:
+                    case ConsoleKey.DownArrow:
+                        if (choseY < 2)
+                        {
+                            choseY++;
+                        }
+
+                        break;
+                    case ConsoleKey.A:
+                    case ConsoleKey.LeftArrow:
+                        if (choseX > 0)
+                        {
+                            choseX--;
+                        }
+
+                        break;
+                    case ConsoleKey.D:
+                    case ConsoleKey.RightArrow:
+                        if (choseX < 2)
+                        {
+                            choseX++;
+                        }
+
+                        break;
+                    case ConsoleKey.Enter:
+                        x = choseX;
+                        y = choseY;
+                        choosen = true;
+                        break;
+                }
             }
+            chose[choseY, choseX] = false;
+            if (field[y, x] == " ")
+            {
+                field[y, x] = sign;
+                placed = true;
+            }
+            else
+            {
+                Console.WriteLine("choose empty field");
+            }
+            Print();
         }
-        chose[choseY, choseX] = false;
     }
 
-    
-    //This function places X or ) on board
-    static bool PlaceXorO()
-    {
-        if (field[y, x] == " ")
-        {
-            field[y, x] = "X";
-            return true;
-        }
-        else
-        {
-            Console.WriteLine("choose empty field");
-            return false;
-        }
-    }
     
     static void Main(string[] args)
     {
         while (!ended)
         {
-            Print();
-            GetPlayerInput();
-            if (PlaceXorO())
-            {
-                Print();
+            PlayerMove("X");
+            WinCheck();
+            if (!ended) {
+                Thread.Sleep(1000); 
+                BotPlay(); 
                 WinCheck();
-                if (!ended)
-                {
-                    Thread.Sleep(1000);
-                    BotPlay();
-                    WinCheck();
-                }
-            }
-            else
-            {
-                Thread.Sleep(1500);
             }
         }
         Print();
