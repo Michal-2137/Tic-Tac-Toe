@@ -10,8 +10,6 @@ internal class Program
         static string[,] field = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
         static short x;
         static short y;
-        static int botX;
-        static int botY;
         static bool ended = false;
         static Random random = new Random();
     
@@ -21,6 +19,8 @@ internal class Program
     //With this function bot moves
     static void BotPlay()
     {
+        int botX;
+        int botY;
         bool botis = false;
         while (!botis)
         {
