@@ -182,12 +182,12 @@ internal class Program
     //This function let player move
     static void PlayerMove(string sign)
     {
-        bool choosen = false;
         bool placed = false;
-        short choseX = 0;
-        short choseY = 0;
         while (!placed)
         {
+            short choseX = 0;
+            short choseY = 0;
+            bool choosen = false;
             while (!choosen)
             {
                 chose[choseY, choseX] = true;
@@ -243,6 +243,7 @@ internal class Program
             else
             {
                 Console.WriteLine("choose empty field");
+                Thread.Sleep(1000);
             }
             Print();
         }
