@@ -253,6 +253,8 @@ internal class Program
     
     static void Main(string[] args)
     {
+        Console.WriteLine("You can play with arrows/wasd and enter/spacebar");
+        Thread.Sleep(5000);
         while (!ended)
         {
             PlayerMove("X");
