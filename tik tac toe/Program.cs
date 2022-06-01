@@ -227,6 +227,7 @@ internal class Program
                         }
 
                         break;
+                    case ConsoleKey.Spacebar:
                     case ConsoleKey.Enter:
                         x = chooseX;
                         y = chooseY;
