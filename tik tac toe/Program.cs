@@ -12,12 +12,13 @@ internal class Program
         static short y;
         static bool ended = false;
         static Random random = new Random();
+        static bool multiplayer;
     
     #endregion
     
     
     //With this function bot moves
-    static void BotPlay()
+    static void BotMove()
     {
         int botX;
         int botY;
@@ -201,7 +202,6 @@ internal class Program
                         {
                             chooseY--;
                         }
-
                         break;
                     case ConsoleKey.S:
                     case ConsoleKey.DownArrow:
@@ -209,7 +209,6 @@ internal class Program
                         {
                             chooseY++;
                         }
-
                         break;
                     case ConsoleKey.A:
                     case ConsoleKey.LeftArrow:
@@ -217,7 +216,6 @@ internal class Program
                         {
                             chooseX--;
                         }
-
                         break;
                     case ConsoleKey.D:
                     case ConsoleKey.RightArrow:
@@ -225,7 +223,6 @@ internal class Program
                         {
                             chooseX++;
                         }
-
                         break;
                     case ConsoleKey.Spacebar:
                     case ConsoleKey.Enter:
@@ -250,9 +247,68 @@ internal class Program
         }
     }
 
+    //This function chooses game mode
+    static void ChooseGameMode()
+    {
+        bool end = false;
+        short selected = 1;
+        while (!end)
+        {
+            Console.Clear();
+            if (selected == 1)
+            {
+                ConsoleUtil.WriteLine("one player mode", ConsoleColor.Black, ConsoleColor.White);
+            }
+            else
+            {
+                Console.WriteLine("one player mode");
+            }
+            if (selected == 2)
+            {
+                ConsoleUtil.WriteLine("two player mode", ConsoleColor.Black, ConsoleColor.White);
+            }
+            else
+            {
+                Console.WriteLine("two player mode");
+            }
+
+            switch (Console.ReadKey().Key)
+            {
+                case ConsoleKey.W:
+                case ConsoleKey.UpArrow:
+                    if (selected > 1)
+                    {
+                        selected--;
+                    }
+                    break;
+                case ConsoleKey.S:
+                case ConsoleKey.DownArrow:
+                    if (selected < 2)
+                    {
+                        selected++;
+                    }
+                    break;
+                case ConsoleKey.Spacebar:
+                case ConsoleKey.Enter:
+                    end = true;
+                    switch (selected)
+                    {
+                        case 1:
+                            multiplayer = false;
+                            break;
+                        case 2:
+                            multiplayer = true;
+                            break;
+                    }
+                    break;
+            }
+        }
+    }
     
+
     static void Main(string[] args)
     {
+        ChooseGameMode();
         Console.WriteLine("You can play with arrows/wasd and enter/spacebar");
         Thread.Sleep(5000);
         while (!ended)
@@ -260,8 +316,15 @@ internal class Program
             PlayerMove("X");
             WinCheck();
             if (!ended) {
-                Thread.Sleep(1000); 
-                BotPlay(); 
+                Thread.Sleep(1000);
+                if (multiplayer)
+                {
+                    PlayerMove("O");
+                }
+                else
+                {
+                    BotMove();
+                }
                 WinCheck();
             }
         }
