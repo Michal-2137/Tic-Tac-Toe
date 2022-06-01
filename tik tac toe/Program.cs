@@ -26,7 +26,7 @@ internal class Program
         Console.Write("  ");
         if (choose[0,0])
         {
-            ConsoleUtil.Write(field[0,0], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[0,0]);
         }
         else
         {
@@ -35,7 +35,7 @@ internal class Program
         Console.Write(" | ");
         if (choose[0,1])
         {
-            ConsoleUtil.Write(field[0,1], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[0,1]);
         }
         else
         {
@@ -44,7 +44,7 @@ internal class Program
         Console.Write(" | ");
         if (choose[0,2])
         {
-            ConsoleUtil.Write(field[0,2], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[0,2]);
         }
         else
         {
@@ -53,7 +53,7 @@ internal class Program
         Console.Write(" \n ---|---|---\n  ");
         if (choose[1,0])
         {
-            ConsoleUtil.Write(field[1,0], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[1,0]);
         }
         else
         {
@@ -62,7 +62,7 @@ internal class Program
         Console.Write(" | ");
         if (choose[1,1])
         {
-            ConsoleUtil.Write(field[1,1], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[1,1]);
         }
         else
         {
@@ -71,7 +71,7 @@ internal class Program
         Console.Write(" | ");
         if (choose[1,2])
         {
-            ConsoleUtil.Write(field[1,2], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[1,2]);
         }
         else
         {
@@ -80,7 +80,7 @@ internal class Program
         Console.Write(" \n ---|---|---\n  ");
         if (choose[2,0])
         {
-            ConsoleUtil.Write(field[2,0], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[2,0]);
         }
         else
         {
@@ -89,7 +89,7 @@ internal class Program
         Console.Write(" | ");
         if (choose[2,1])
         {
-            ConsoleUtil.Write(field[2,1], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[2,1]);
         }
         else
         {
@@ -98,7 +98,7 @@ internal class Program
         Console.Write(" | ");
         if (choose[2,2])
         {
-            ConsoleUtil.Write(field[2,2], ConsoleColor.Black, ConsoleColor.White);
+            ConsoleUtil.Write(field[2,2]);
         }
         else
         {
@@ -202,10 +202,10 @@ internal class Program
     static void MediumBotMove()
     {
         Thread.Sleep(1000);
-        short i = 0;
         bool placed = false;
         void check(string sign, string sign2)
         {
+            short i = 0;
             while (i < 3 && !placed)
             {
                 short counter2 = 0;
@@ -229,7 +229,39 @@ internal class Program
                     {
                         if (field[i,j] == " ")
                         {
-                            field[i, j] = sign;
+                            field[i, j] = "O";
+                            placed = true;
+                        }
+                    }
+                }
+
+                i++;
+            }
+            i = 0;
+            while (i < 3 && !placed)
+            {
+                short counter2 = 0;
+                short counter = 0;
+                for (short j=0;j<3;j++)
+                {
+                    if (field[j,i] == sign)
+                    {
+                        counter++;
+                    }
+
+                    if (field[j,i] == sign2)
+                    {
+                        counter2++;
+                    }
+                }
+                
+                if (counter == 2 && counter2 == 0)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (field[j,i] == " ")
+                        {
+                            field[j, i] = "O";
                             placed = true;
                         }
                     }
@@ -319,7 +351,7 @@ internal class Program
             Console.Clear();
             if (SelectedMode == 1)
             {
-                ConsoleUtil.WriteLine("easy mode", ConsoleColor.Black, ConsoleColor.White);
+                ConsoleUtil.WriteLine("easy mode");
             }
             else
             {
@@ -327,7 +359,7 @@ internal class Program
             }
             if (SelectedMode == 2)
             {
-                ConsoleUtil.WriteLine("medium mode (not working)", ConsoleColor.Black, ConsoleColor.White);
+                ConsoleUtil.WriteLine("medium mode (not working)");
             }
             else
             {
@@ -335,7 +367,7 @@ internal class Program
             }
             if (SelectedMode == 3)
             {
-                ConsoleUtil.WriteLine("hard mode (not working)", ConsoleColor.Black, ConsoleColor.White);
+                ConsoleUtil.WriteLine("hard mode (not working)");
             }
             else
             {
@@ -343,7 +375,7 @@ internal class Program
             }
             if (SelectedMode == 4)
             {
-                ConsoleUtil.WriteLine("2 players mode", ConsoleColor.Black, ConsoleColor.White);
+                ConsoleUtil.WriteLine("2 players mode");
             }
             else
             {
@@ -382,7 +414,7 @@ internal class Program
     {
         ChooseGameMode();
         Console.WriteLine("You can play with arrows/wasd and enter/spacebar");
-        Thread.Sleep(5000);
+        Thread.Sleep(3000);
         while (!ended)
         {
             PlayerMove("X");
