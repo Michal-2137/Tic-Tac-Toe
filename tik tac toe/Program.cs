@@ -1,4 +1,5 @@
-﻿using CompassModKit.Utilities.ConsoleUtil;
+﻿using System.Net.Sockets;
+using CompassModKit.Utilities.ConsoleUtil;
 
 internal class Program
 {
@@ -12,83 +13,11 @@ internal class Program
         static short y;
         static bool ended = false;
         static Random random = new Random();
-        static bool multiplayer;
+        static short SelectedMode = 1;
     
     #endregion
     
     
-    //With this function bot moves
-    static void BotMove()
-    {
-        int botX;
-        int botY;
-        bool botis = false;
-        while (!botis)
-        {
-            botX = random.Next(0, 3);
-            botY = random.Next(0, 3);
-            if (field[botY, botX] == " ")
-            {
-                field[botY, botX] = "O";
-                botis = true;
-            }
-        }
-        Print();
-    }
-    
-    
-    //This function checks if someone won
-    static void WinCheck()
-    {
-        void end()
-        {
-            wintext = $"the winner is {winner}!";
-            ended = true;
-        }
-
-        for (int i = 0; i < 2; i++)
-        {
-            if (field[i,0] == field[i,1] && field[i,0] == field[i,2] && field[i,0] != " ")
-            {
-                winner = field[i, 0];
-                end();
-            }
-            if (field[0,i] == field[1,i] && field[0,i] == field[2,i] && field[0,i] != " ")
-            {
-                winner = field[0, i];
-                end();
-            }
-        }
-        if (field[0,0] == field[1,1] && field[0,0] == field[2,2] && field[0,0] != " ")
-        {
-            winner = field[0, 0];
-            end();
-        }
-
-        if (field[0,2] == field[1,1] && field[0,2] == field[2,0] && field[0,2] != " ")
-        {
-            winner = field[0, 2];
-            end();
-        }
-        
-        if (!ended)
-        {
-            bool draw = true;
-            foreach (string f in field)
-            {
-                if (f == " ")
-                {
-                    draw = false;
-                }
-            }
-            if (draw)
-            {
-                wintext = "Draw!";
-                ended = true;
-            }
-        }
-    }
-
     
     //This function prints board
     static void Print()
@@ -178,7 +107,7 @@ internal class Program
         Console.Write(" \n\n");
         Console.WriteLine(wintext);
     }
-
+    
     
     //This function let player move
     static void PlayerMove(string sign)
@@ -246,67 +175,190 @@ internal class Program
             Print();
         }
     }
+    
+    
+    //With this function bot on easy mode moves
+    static void EasyBotMove()
+    {
+        Thread.Sleep(1000);
+        int botX;
+        int botY;
+        bool botis = false;
+        while (!botis)
+        {
+            botX = random.Next(0, 3);
+            botY = random.Next(0, 3);
+            if (field[botY, botX] == " ")
+            {
+                field[botY, botX] = "O";
+                botis = true;
+            }
+        }
+        Print();
+    }
+    
+    
+    //With this function bot on medium mode moves
+    static void MediumBotMove()
+    {
+        int botX;
+        int botY;
+        bool botis = false;
+        while (!botis)
+        {
+            botX = random.Next(0, 3);
+            botY = random.Next(0, 3);
+            if (field[botY, botX] == " ")
+            {
+                field[botY, botX] = "O";
+                botis = true;
+            }
+        }
+        Print();
+    }
+    
+    
+    //With this function bot on hard mode moves
+    static void HardBotMove()
+    {
+        int botX;
+        int botY;
+        bool botis = false;
+        while (!botis)
+        {
+            botX = random.Next(0, 3);
+            botY = random.Next(0, 3);
+            if (field[botY, botX] == " ")
+            {
+                field[botY, botX] = "O";
+                botis = true;
+            }
+        }
+        Print();
+    }
+    
+    
+    //This function checks if someone won
+    static void WinCheck()
+    {
+        void end()
+        {
+            wintext = $"the winner is {winner}!";
+            ended = true;
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            if (field[i,0] == field[i,1] && field[i,0] == field[i,2] && field[i,0] != " ")
+            {
+                winner = field[i, 0];
+                end();
+            }
+            if (field[0,i] == field[1,i] && field[0,i] == field[2,i] && field[0,i] != " ")
+            {
+                winner = field[0, i];
+                end();
+            }
+        }
+        if (field[0,0] == field[1,1] && field[0,0] == field[2,2] && field[0,0] != " ")
+        {
+            winner = field[0, 0];
+            end();
+        }
+
+        if (field[0,2] == field[1,1] && field[0,2] == field[2,0] && field[0,2] != " ")
+        {
+            winner = field[0, 2];
+            end();
+        }
+        
+        if (!ended)
+        {
+            bool draw = true;
+            foreach (string f in field)
+            {
+                if (f == " ")
+                {
+                    draw = false;
+                }
+            }
+            if (draw)
+            {
+                wintext = "Draw!";
+                ended = true;
+            }
+        }
+    }
 
     
     //This function chooses game mode
     static void ChooseGameMode()
     {
         bool end = false;
-        short selected = 1;
         while (!end)
         {
             Console.Clear();
-            if (selected == 1)
+            if (SelectedMode == 1)
             {
-                ConsoleUtil.WriteLine("one player mode", ConsoleColor.Black, ConsoleColor.White);
+                ConsoleUtil.WriteLine("easy mode", ConsoleColor.Black, ConsoleColor.White);
             }
             else
             {
-                Console.WriteLine("one player mode");
+                Console.WriteLine("easy mode");
             }
-            if (selected == 2)
+            if (SelectedMode == 2)
             {
-                ConsoleUtil.WriteLine("two player mode", ConsoleColor.Black, ConsoleColor.White);
+                ConsoleUtil.WriteLine("medium mode (not working)", ConsoleColor.Black, ConsoleColor.White);
             }
             else
             {
-                Console.WriteLine("two player mode");
+                Console.WriteLine("medium mode (not working)");
             }
-
+            if (SelectedMode == 3)
+            {
+                ConsoleUtil.WriteLine("hard mode not working", ConsoleColor.Black, ConsoleColor.White);
+            }
+            else
+            {
+                Console.WriteLine("hard mode not working");
+            }
+            if (SelectedMode == 4)
+            {
+                ConsoleUtil.WriteLine("2 players mode", ConsoleColor.Black, ConsoleColor.White);
+            }
+            else
+            {
+                Console.WriteLine("2 players mode");
+            }
+            
+            
             switch (Console.ReadKey().Key)
             {
                 case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
-                    if (selected > 1)
+                    if (SelectedMode > 1)
                     {
-                        selected--;
+                        SelectedMode--;
                     }
                     break;
                 case ConsoleKey.S:
                 case ConsoleKey.DownArrow:
-                    if (selected < 2)
+                    if (SelectedMode < 4)
                     {
-                        selected++;
+                        SelectedMode++;
                     }
                     break;
                 case ConsoleKey.Spacebar:
                 case ConsoleKey.Enter:
                     end = true;
-                    switch (selected)
-                    {
-                        case 1:
-                            multiplayer = false;
-                            break;
-                        case 2:
-                            multiplayer = true;
-                            break;
-                    }
                     break;
             }
         }
+        Console.Clear();
     }
     
 
+    
     static void Main(string[] args)
     {
         ChooseGameMode();
@@ -317,14 +369,20 @@ internal class Program
             PlayerMove("X");
             WinCheck();
             if (!ended) {
-                Thread.Sleep(1000);
-                if (multiplayer)
+                switch (SelectedMode)
                 {
-                    PlayerMove("O");
-                }
-                else
-                {
-                    BotMove();
+                    case 1:
+                        EasyBotMove();
+                        break;
+                    case 2:
+                        MediumBotMove();
+                        break;
+                    case 3:
+                        HardBotMove();
+                        break;
+                    case 4:
+                        PlayerMove("O");
+                        break;
                 }
                 WinCheck();
             }
