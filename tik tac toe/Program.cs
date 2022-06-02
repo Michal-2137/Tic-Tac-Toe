@@ -345,7 +345,7 @@ internal class Program
             ended = true;
         }
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (field[i,0] == field[i,1] && field[i,0] == field[i,2] && field[i,0] != " ")
             {

@@ -3,4 +3,5 @@
 - [x] new input system
 - [x] medium mode
 - [ ] hard mode
-- [ ] sometimes randomly not showing that middle bot won
+- [x] sometimes randomly not showing that middle bot won
+  (problem was with whole right and bottom line)
