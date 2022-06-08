@@ -1,5 +1,5 @@
 ﻿using CompassModKit.Utilities.ConsoleUtil;
-using Lists;
+using CompassModKit.Lists;
 
 internal class Program
 {
@@ -518,7 +518,7 @@ internal class Program
     static void Menu()
     {
         string[] gamemodes = {"easy bot", "medium bot", "hard mode", "2 players"};
-        mode = Lists.Lists.CreateList("Choose Game Mode", gamemodes);
+        mode = Lists.CreateList("Choose Game Mode", gamemodes);
     }
     
 

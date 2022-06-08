@@ -1,5 +1,5 @@
 ﻿using CompassModKit.Utilities.ConsoleUtil;
-namespace Lists
+namespace CompassModKit.Lists
 {
     public static class Lists
     {
