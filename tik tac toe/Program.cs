@@ -6,7 +6,7 @@ internal class Program
 
         static string wintext = "";
         static string winner = "";
-        private static bool[,] choose = {{false, false, false}, {false, false, false}, {false, false, false}};
+        private static bool[,] chose = {{false, false, false}, {false, false, false}, {false, false, false}};
         static string[,] fields = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
         static short x;
         static short y;
@@ -27,7 +27,7 @@ internal class Program
     {
         Console.Clear();
         Console.Write("  ");
-        if (choose[0,0])
+        if (chose[0,0])
         {
             ConsoleUtil.Write(fields[0,0]);
         }
@@ -36,7 +36,7 @@ internal class Program
             Console.Write(fields[0,0]);
         }
         Console.Write(" | ");
-        if (choose[0,1])
+        if (chose[0,1])
         {
             ConsoleUtil.Write(fields[0,1]);
         }
@@ -45,7 +45,7 @@ internal class Program
             Console.Write(fields[0,1]);
         }
         Console.Write(" | ");
-        if (choose[0,2])
+        if (chose[0,2])
         {
             ConsoleUtil.Write(fields[0,2]);
         }
@@ -54,7 +54,7 @@ internal class Program
             Console.Write(fields[0,2]);
         }
         Console.Write(" \n ---|---|---\n  ");
-        if (choose[1,0])
+        if (chose[1,0])
         {
             ConsoleUtil.Write(fields[1,0]);
         }
@@ -63,7 +63,7 @@ internal class Program
             Console.Write(fields[1,0]);
         }
         Console.Write(" | ");
-        if (choose[1,1])
+        if (chose[1,1])
         {
             ConsoleUtil.Write(fields[1,1]);
         }
@@ -72,7 +72,7 @@ internal class Program
             Console.Write(fields[1,1]);
         }
         Console.Write(" | ");
-        if (choose[1,2])
+        if (chose[1,2])
         {
             ConsoleUtil.Write(fields[1,2]);
         }
@@ -81,7 +81,7 @@ internal class Program
             Console.Write(fields[1,2]);
         }
         Console.Write(" \n ---|---|---\n  ");
-        if (choose[2,0])
+        if (chose[2,0])
         {
             ConsoleUtil.Write(fields[2,0]);
         }
@@ -90,7 +90,7 @@ internal class Program
             Console.Write(fields[2,0]);
         }
         Console.Write(" | ");
-        if (choose[2,1])
+        if (chose[2,1])
         {
             ConsoleUtil.Write(fields[2,1]);
         }
@@ -99,7 +99,7 @@ internal class Program
             Console.Write(fields[2,1]);
         }
         Console.Write(" | ");
-        if (choose[2,2])
+        if (chose[2,2])
         {
             ConsoleUtil.Write(fields[2,2]);
         }
@@ -118,53 +118,53 @@ internal class Program
         bool placed = false;
         while (!placed)
         {
-            short chooseX = 0;
-            short chooseY = 0;
+            short choseX = 0;
+            short choseY = 0;
             bool choosen = false;
             while (!choosen)
             {
-                choose[chooseY, chooseX] = true;
+                chose[choseY, choseX] = true;
                 Print();
-                choose[chooseY, chooseX] = false;
+                chose[choseY, choseX] = false;
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.W:
                     case ConsoleKey.UpArrow:
-                        if (chooseY > 0)
+                        if (choseY > 0)
                         {
-                            chooseY--;
+                            choseY--;
                         }
                         break;
                     case ConsoleKey.S:
                     case ConsoleKey.DownArrow:
-                        if (chooseY < 2)
+                        if (choseY < 2)
                         {
-                            chooseY++;
+                            choseY++;
                         }
                         break;
                     case ConsoleKey.A:
                     case ConsoleKey.LeftArrow:
-                        if (chooseX > 0)
+                        if (choseX > 0)
                         {
-                            chooseX--;
+                            choseX--;
                         }
                         break;
                     case ConsoleKey.D:
                     case ConsoleKey.RightArrow:
-                        if (chooseX < 2)
+                        if (choseX < 2)
                         {
-                            chooseX++;
+                            choseX++;
                         }
                         break;
                     case ConsoleKey.Spacebar:
                     case ConsoleKey.Enter:
-                        x = chooseX;
-                        y = chooseY;
+                        x = choseX;
+                        y = choseY;
                         choosen = true;
                         break;
                 }
             }
-            choose[chooseY, chooseX] = false;
+            chose[choseY, choseX] = false;
             if (fields[y, x] == " ")
             {
                 fields[y, x] = sign;
@@ -172,7 +172,7 @@ internal class Program
             }
             else
             {
-                Console.WriteLine("choose empty fields");
+                Console.WriteLine("choose empty field");
                 Thread.Sleep(1000);
             }
             Print();
