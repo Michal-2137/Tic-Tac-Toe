@@ -7,7 +7,7 @@ internal class Program
         static string wintext = "";
         static string winner = "";
         private static bool[,] choose = {{false, false, false}, {false, false, false}, {false, false, false}};
-        static string[,] field = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
+        static string[,] fields = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
         static short x;
         static short y;
         static bool ended = false;
@@ -29,83 +29,83 @@ internal class Program
         Console.Write("  ");
         if (choose[0,0])
         {
-            ConsoleUtil.Write(field[0,0]);
+            ConsoleUtil.Write(fields[0,0]);
         }
         else
         {
-            Console.Write(field[0,0]);
+            Console.Write(fields[0,0]);
         }
         Console.Write(" | ");
         if (choose[0,1])
         {
-            ConsoleUtil.Write(field[0,1]);
+            ConsoleUtil.Write(fields[0,1]);
         }
         else
         {
-            Console.Write(field[0,1]);
+            Console.Write(fields[0,1]);
         }
         Console.Write(" | ");
         if (choose[0,2])
         {
-            ConsoleUtil.Write(field[0,2]);
+            ConsoleUtil.Write(fields[0,2]);
         }
         else
         {
-            Console.Write(field[0,2]);
+            Console.Write(fields[0,2]);
         }
         Console.Write(" \n ---|---|---\n  ");
         if (choose[1,0])
         {
-            ConsoleUtil.Write(field[1,0]);
+            ConsoleUtil.Write(fields[1,0]);
         }
         else
         {
-            Console.Write(field[1,0]);
+            Console.Write(fields[1,0]);
         }
         Console.Write(" | ");
         if (choose[1,1])
         {
-            ConsoleUtil.Write(field[1,1]);
+            ConsoleUtil.Write(fields[1,1]);
         }
         else
         {
-            Console.Write(field[1,1]);
+            Console.Write(fields[1,1]);
         }
         Console.Write(" | ");
         if (choose[1,2])
         {
-            ConsoleUtil.Write(field[1,2]);
+            ConsoleUtil.Write(fields[1,2]);
         }
         else
         {
-            Console.Write(field[1,2]);
+            Console.Write(fields[1,2]);
         }
         Console.Write(" \n ---|---|---\n  ");
         if (choose[2,0])
         {
-            ConsoleUtil.Write(field[2,0]);
+            ConsoleUtil.Write(fields[2,0]);
         }
         else
         {
-            Console.Write(field[2,0]);
+            Console.Write(fields[2,0]);
         }
         Console.Write(" | ");
         if (choose[2,1])
         {
-            ConsoleUtil.Write(field[2,1]);
+            ConsoleUtil.Write(fields[2,1]);
         }
         else
         {
-            Console.Write(field[2,1]);
+            Console.Write(fields[2,1]);
         }
         Console.Write(" | ");
         if (choose[2,2])
         {
-            ConsoleUtil.Write(field[2,2]);
+            ConsoleUtil.Write(fields[2,2]);
         }
         else
         {
-            Console.Write(field[2,2]);
+            Console.Write(fields[2,2]);
         }
         Console.Write(" \n\n");
         Console.WriteLine(wintext);
@@ -165,14 +165,14 @@ internal class Program
                 }
             }
             choose[chooseY, chooseX] = false;
-            if (field[y, x] == " ")
+            if (fields[y, x] == " ")
             {
-                field[y, x] = sign;
+                fields[y, x] = sign;
                 placed = true;
             }
             else
             {
-                Console.WriteLine("choose empty field");
+                Console.WriteLine("choose empty fields");
                 Thread.Sleep(1000);
             }
             Print();
@@ -190,9 +190,9 @@ internal class Program
         {
             botX = random.Next(0, 3);
             botY = random.Next(0, 3);
-            if (field[botY, botX] == " ")
+            if (fields[botY, botX] == " ")
             {
-                field[botY, botX] = bot;
+                fields[botY, botX] = bot;
                 botis = true;
             }
         }
@@ -212,12 +212,12 @@ internal class Program
                 short counter = 0;
                 for (short j=0;j<3;j++)
                 {
-                    if (field[i,j] == sign)
+                    if (fields[i,j] == sign)
                     {
                         counter++;
                     }
 
-                    if (field[i,j] == sign2)
+                    if (fields[i,j] == sign2)
                     {
                         counter2++;
                     }
@@ -227,9 +227,9 @@ internal class Program
                 {
                     for (int j = 0; j < 3; j++)
                     {
-                        if (field[i,j] == " ")
+                        if (fields[i,j] == " ")
                         {
-                            field[i, j] = bot;
+                            fields[i, j] = bot;
                             placed = true;
                         }
                     }
@@ -243,12 +243,12 @@ internal class Program
                 short counter = 0;
                 for (short j = 0; j < 3; j++)
                 {
-                    if (field[j, i] == sign)
+                    if (fields[j, i] == sign)
                     {
                         counter++;
                     }
 
-                    if (field[j, i] == sign2)
+                    if (fields[j, i] == sign2)
                     {
                         counter2++;
                     }
@@ -257,9 +257,9 @@ internal class Program
                 {
                     for (int j = 0; j < 3; j++)
                     {
-                        if (field[j, i] == " ")
+                        if (fields[j, i] == " ")
                         {
-                            field[j, i] = bot;
+                            fields[j, i] = bot;
                             placed = true;
                         }
                     }
@@ -269,12 +269,12 @@ internal class Program
 
             if (!placed)
             {
-                string[] arr = { field[0, 0], field[1, 1], field[2, 2] };
+                string[] arr = { fields[0, 0], fields[1, 1], fields[2, 2] };
                 CheckSlant(true);
                 if (!placed)
                 {
-                    arr[0] = field[0, 2];
-                    arr[2] = field[2, 0];
+                    arr[0] = fields[0, 2];
+                    arr[2] = fields[2, 0];
                     CheckSlant(false);
                 }
 
@@ -307,16 +307,16 @@ internal class Program
                         }
                     }
 
-                    field[1, 1] = arr[1];
+                    fields[1, 1] = arr[1];
                     if (f)
                     {
-                        field[0, 0] = arr[0];
-                        field[2, 2] = arr[2];
+                        fields[0, 0] = arr[0];
+                        fields[2, 2] = arr[2];
                     }
                     else
                     {
-                        field[0, 2] = arr[0];
-                        field[2, 0] = arr[2];
+                        fields[0, 2] = arr[0];
+                        fields[2, 0] = arr[2];
                     }
                 }
             }
@@ -336,11 +336,11 @@ internal class Program
     //With this function bot on hard mode moves
     static void HardBotMove()
     {
-        Boolean IsMovesLeft(string [,]field)
+        Boolean IsMovesLeft(string [,]fields)
         {
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
-                    if (field[i, j] == " ")
+                    if (fields[i, j] == " ")
                         return true; 
             return false;
         }
@@ -385,14 +385,14 @@ internal class Program
             }
             return 0;
         }
-        int MiniMax(string [,]field, int depth, Boolean isMax)
+        int MiniMax(string [,]fields, int depth, Boolean isMax)
         {
-            int score = Evaluate(field);
+            int score = Evaluate(fields);
             if (score == 10)
                 return score;
             if (score == -10)
                 return score;
-            if (IsMovesLeft(field) == false)
+            if (IsMovesLeft(fields) == false)
                 return 0;
             if (isMax)
             {
@@ -401,11 +401,11 @@ internal class Program
                 {
                     for (int j = 0; j < 3; j++)
                     {
-                        if (field[i, j] == " ")
+                        if (fields[i, j] == " ")
                         {
-                            field[i, j] = bot;
-                            best = Math.Max(best, MiniMax(field, depth + 1, !isMax));
-                            field[i, j] = " ";
+                            fields[i, j] = bot;
+                            best = Math.Max(best, MiniMax(fields, depth + 1, !isMax));
+                            fields[i, j] = " ";
                         }
                     }
                 }
@@ -418,18 +418,18 @@ internal class Program
                 {
                     for (int j = 0; j < 3; j++)
                     {
-                        if (field[i, j] == " ")
+                        if (fields[i, j] == " ")
                         {
-                            field[i, j] = player;
-                            best = Math.Min(best, MiniMax(field, depth + 1, !isMax));
-                            field[i, j] = " ";
+                            fields[i, j] = player;
+                            best = Math.Min(best, MiniMax(fields, depth + 1, !isMax));
+                            fields[i, j] = " ";
                         }
                     }
                 }
                 return best;
             }
         }
-        Move FindBestMove(string [,]field)
+        Move FindBestMove(string [,]fields)
         {
             int bestVal = -1000;
             Move bestMove = new Move();
@@ -439,11 +439,11 @@ internal class Program
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (field[i, j] == " ")
+                    if (fields[i, j] == " ")
                     {
-                        field[i, j] = bot;
-                        int moveVal = MiniMax(field, 0, false);
-                        field[i, j] = " ";
+                        fields[i, j] = bot;
+                        int moveVal = MiniMax(fields, 0, false);
+                        fields[i, j] = " ";
                         if (moveVal > bestVal)
                         {
                             bestMove.row = i;
@@ -455,8 +455,8 @@ internal class Program
             }
             return bestMove;
         }
-        Move bestMove = FindBestMove(field);
-        field[bestMove.row, bestMove.col] = bot;
+        Move bestMove = FindBestMove(fields);
+        fields[bestMove.row, bestMove.col] = bot;
     }
     
     
@@ -471,33 +471,33 @@ internal class Program
 
         for (int i = 0; i < 3; i++)
         {
-            if (field[i,0] == field[i,1] && field[i,0] == field[i,2] && field[i,0] != " ")
+            if (fields[i,0] == fields[i,1] && fields[i,0] == fields[i,2] && fields[i,0] != " ")
             {
-                winner = field[i, 0];
+                winner = fields[i, 0];
                 End();
             }
-            if (field[0,i] == field[1,i] && field[0,i] == field[2,i] && field[0,i] != " ")
+            if (fields[0,i] == fields[1,i] && fields[0,i] == fields[2,i] && fields[0,i] != " ")
             {
-                winner = field[0, i];
+                winner = fields[0, i];
                 End();
             }
         }
-        if (field[0,0] == field[1,1] && field[0,0] == field[2,2] && field[0,0] != " ")
+        if (fields[0,0] == fields[1,1] && fields[0,0] == fields[2,2] && fields[0,0] != " ")
         {
-            winner = field[0, 0];
+            winner = fields[0, 0];
             End();
         }
 
-        if (field[0,2] == field[1,1] && field[0,2] == field[2,0] && field[0,2] != " ")
+        if (fields[0,2] == fields[1,1] && fields[0,2] == fields[2,0] && fields[0,2] != " ")
         {
-            winner = field[0, 2];
+            winner = fields[0, 2];
             End();
         }
         
         if (!ended)
         {
             bool draw = true;
-            foreach (string f in field)
+            foreach (string f in fields)
             {
                 if (f == " ")
                 {
