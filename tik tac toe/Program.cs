@@ -1,5 +1,4 @@
-﻿using System.Net.Sockets;
-using CompassModKit.Utilities.ConsoleUtil;
+﻿using CompassModKit.Utilities.ConsoleUtil;
 
 internal class Program
 {
@@ -204,7 +203,7 @@ internal class Program
     static void MediumBotMove()
     {
         bool placed = false;
-        void check(string sign, string sign2)
+        void Check(string sign, string sign2)
         {
             short i = 0;
             while (i < 3 && !placed)
@@ -322,10 +321,10 @@ internal class Program
                 }
             }
         }
-        check("O", "X");
+        Check("O", "X");
         if (!placed) 
         {
-            check("X", "O");
+            Check("X", "O");
         }
         if (!placed)
         {
@@ -464,7 +463,7 @@ internal class Program
     //This function checks if someone won
     static void WinCheck()
     {
-        void end()
+        void End()
         {
             wintext = $"the winner is {winner}!";
             ended = true;
@@ -475,24 +474,24 @@ internal class Program
             if (field[i,0] == field[i,1] && field[i,0] == field[i,2] && field[i,0] != " ")
             {
                 winner = field[i, 0];
-                end();
+                End();
             }
             if (field[0,i] == field[1,i] && field[0,i] == field[2,i] && field[0,i] != " ")
             {
                 winner = field[0, i];
-                end();
+                End();
             }
         }
         if (field[0,0] == field[1,1] && field[0,0] == field[2,2] && field[0,0] != " ")
         {
             winner = field[0, 0];
-            end();
+            End();
         }
 
         if (field[0,2] == field[1,1] && field[0,2] == field[2,0] && field[0,2] != " ")
         {
             winner = field[0, 2];
-            end();
+            End();
         }
         
         if (!ended)
