@@ -1,4 +1,5 @@
 ﻿using CompassModKit.Utilities.ConsoleUtil;
+using Lists;
 
 internal class Program
 {
@@ -8,11 +9,11 @@ internal class Program
         static string winner = "";
         private static bool[,] chose = {{false, false, false}, {false, false, false}, {false, false, false}};
         static string[,] fields = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
-        static short x;
-        static short y;
+        static int x;
+        static int y;
         static bool ended = false;
         static Random random = new Random();
-        static short mode = 1;
+        static int mode = 1;
         static string bot = "O", player = "X";
         class Move
         {
@@ -118,8 +119,8 @@ internal class Program
         bool placed = false;
         while (!placed)
         {
-            short choseX = 0;
-            short choseY = 0;
+            int choseX = 0;
+            int choseY = 0;
             bool choosen = false;
             while (!choosen)
             {
@@ -205,11 +206,11 @@ internal class Program
         bool placed = false;
         void Check(string sign, string sign2)
         {
-            short i = 0;
+            int i = 0;
             while (i < 3 && !placed)
             {
-                short counter2 = 0;
-                short counter = 0;
+                int counter2 = 0;
+                int counter = 0;
                 for (short j=0;j<3;j++)
                 {
                     if (fields[i,j] == sign)
@@ -239,8 +240,8 @@ internal class Program
             i = 0;
             while (i < 3 && !placed)
             {
-                short counter2 = 0;
-                short counter = 0;
+                int counter2 = 0;
+                int counter = 0;
                 for (short j = 0; j < 3; j++)
                 {
                     if (fields[j, i] == sign)
@@ -280,8 +281,8 @@ internal class Program
 
                 void CheckSlant(bool f)
                 {
-                    short counter = 0;
-                    short counter2 = 0;
+                    int counter = 0;
+                    int counter2 = 0;
                     foreach (string a in arr)
                     {
                         if (a == sign)
@@ -514,76 +515,17 @@ internal class Program
 
     
     //This function chooses game mode
-    static void ChooseGameMode()
+    static void Menu()
     {
-        bool end = false;
-        while (!end)
-        {
-            Console.Clear();
-            if (mode == 1)
-            {
-                ConsoleUtil.WriteLine("easy mode");
-            }
-            else
-            {
-                Console.WriteLine("easy mode");
-            }
-            if (mode == 2)
-            {
-                ConsoleUtil.WriteLine("medium mode");
-            }
-            else
-            {
-                Console.WriteLine("medium mode");
-            }
-            if (mode == 3)
-            {
-                ConsoleUtil.WriteLine("hard mode");
-            }
-            else
-            {
-                Console.WriteLine("hard mode");
-            }
-            if (mode == 4)
-            {
-                ConsoleUtil.WriteLine("2 players mode");
-            }
-            else
-            {
-                Console.WriteLine("2 players mode");
-            }
-            
-            
-            switch (Console.ReadKey().Key)
-            {
-                case ConsoleKey.W:
-                case ConsoleKey.UpArrow:
-                    if (mode > 1)
-                    {
-                        mode--;
-                    }
-                    break;
-                case ConsoleKey.S:
-                case ConsoleKey.DownArrow:
-                    if (mode < 4)
-                    {
-                        mode++;
-                    }
-                    break;
-                case ConsoleKey.Spacebar:
-                case ConsoleKey.Enter:
-                    end = true;
-                    break;
-            }
-        }
-        Console.Clear();
+        string[] gamemodes = {"easy bot", "medium bot", "hard mode", "2 players"};
+        mode = Lists.Lists.CreateList("Choose Game Mode", gamemodes);
     }
     
 
     
     static void Main(string[] args)
     {
-        ChooseGameMode();
+        Menu();
         Console.WriteLine("You can play with arrows/wasd and enter/spacebar");
         Thread.Sleep(1000);
         Console.WriteLine("Press anything to continue");
@@ -595,16 +537,16 @@ internal class Program
             if (!ended) {
                 switch (mode)
                 {
-                    case 1:
+                    case 0:
                         EasyBotMove();
                         break;
-                    case 2:
+                    case 1:
                         MediumBotMove();
                         break;
-                    case 3:
+                    case 2:
                         HardBotMove();
                         break;
-                    case 4:
+                    case 3:
                         PlayerMove("O");
                         break;
                 }
