@@ -461,7 +461,9 @@ internal class Program
     {
         ChooseGameMode();
         Console.WriteLine("You can play with arrows/wasd and enter/spacebar");
-        Thread.Sleep(3000);
+        Thread.Sleep(1000);
+        Console.WriteLine("Press anything to continue");
+        Console.ReadKey();
         while (!ended)
         {
             PlayerMove("X");
