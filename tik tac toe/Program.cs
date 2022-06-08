@@ -12,7 +12,7 @@ internal class Program
         static short y;
         static bool ended = false;
         static Random random = new Random();
-        static short selectedMode = 1;
+        static short mode = 1;
         static string bot = "O", player = "X";
         class Move
         {
@@ -520,7 +520,7 @@ internal class Program
         while (!end)
         {
             Console.Clear();
-            if (selectedMode == 1)
+            if (mode == 1)
             {
                 ConsoleUtil.WriteLine("easy mode");
             }
@@ -528,7 +528,7 @@ internal class Program
             {
                 Console.WriteLine("easy mode");
             }
-            if (selectedMode == 2)
+            if (mode == 2)
             {
                 ConsoleUtil.WriteLine("medium mode");
             }
@@ -536,7 +536,7 @@ internal class Program
             {
                 Console.WriteLine("medium mode");
             }
-            if (selectedMode == 3)
+            if (mode == 3)
             {
                 ConsoleUtil.WriteLine("hard mode");
             }
@@ -544,7 +544,7 @@ internal class Program
             {
                 Console.WriteLine("hard mode");
             }
-            if (selectedMode == 4)
+            if (mode == 4)
             {
                 ConsoleUtil.WriteLine("2 players mode");
             }
@@ -558,16 +558,16 @@ internal class Program
             {
                 case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
-                    if (selectedMode > 1)
+                    if (mode > 1)
                     {
-                        selectedMode--;
+                        mode--;
                     }
                     break;
                 case ConsoleKey.S:
                 case ConsoleKey.DownArrow:
-                    if (selectedMode < 4)
+                    if (mode < 4)
                     {
-                        selectedMode++;
+                        mode++;
                     }
                     break;
                 case ConsoleKey.Spacebar:
@@ -593,7 +593,7 @@ internal class Program
             PlayerMove("X");
             WinCheck();
             if (!ended) {
-                switch (selectedMode)
+                switch (mode)
                 {
                     case 1:
                         EasyBotMove();
