@@ -13,7 +13,7 @@ internal class Program
         static short y;
         static bool ended = false;
         static Random random = new Random();
-        static short SelectedMode = 1;
+        static short selectedMode = 1;
         static string bot = "O", player = "X";
         class Move
         {
@@ -193,7 +193,7 @@ internal class Program
             botY = random.Next(0, 3);
             if (field[botY, botX] == " ")
             {
-                field[botY, botX] = "O";
+                field[botY, botX] = bot;
                 botis = true;
             }
         }
@@ -230,7 +230,7 @@ internal class Program
                     {
                         if (field[i,j] == " ")
                         {
-                            field[i, j] = "O";
+                            field[i, j] = bot;
                             placed = true;
                         }
                     }
@@ -260,7 +260,7 @@ internal class Program
                     {
                         if (field[j, i] == " ")
                         {
-                            field[j, i] = "O";
+                            field[j, i] = bot;
                             placed = true;
                         }
                     }
@@ -521,7 +521,7 @@ internal class Program
         while (!end)
         {
             Console.Clear();
-            if (SelectedMode == 1)
+            if (selectedMode == 1)
             {
                 ConsoleUtil.WriteLine("easy mode");
             }
@@ -529,7 +529,7 @@ internal class Program
             {
                 Console.WriteLine("easy mode");
             }
-            if (SelectedMode == 2)
+            if (selectedMode == 2)
             {
                 ConsoleUtil.WriteLine("medium mode");
             }
@@ -537,7 +537,7 @@ internal class Program
             {
                 Console.WriteLine("medium mode");
             }
-            if (SelectedMode == 3)
+            if (selectedMode == 3)
             {
                 ConsoleUtil.WriteLine("hard mode");
             }
@@ -545,7 +545,7 @@ internal class Program
             {
                 Console.WriteLine("hard mode");
             }
-            if (SelectedMode == 4)
+            if (selectedMode == 4)
             {
                 ConsoleUtil.WriteLine("2 players mode");
             }
@@ -559,16 +559,16 @@ internal class Program
             {
                 case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
-                    if (SelectedMode > 1)
+                    if (selectedMode > 1)
                     {
-                        SelectedMode--;
+                        selectedMode--;
                     }
                     break;
                 case ConsoleKey.S:
                 case ConsoleKey.DownArrow:
-                    if (SelectedMode < 4)
+                    if (selectedMode < 4)
                     {
-                        SelectedMode++;
+                        selectedMode++;
                     }
                     break;
                 case ConsoleKey.Spacebar:
@@ -594,7 +594,7 @@ internal class Program
             PlayerMove("X");
             WinCheck();
             if (!ended) {
-                switch (SelectedMode)
+                switch (selectedMode)
                 {
                     case 1:
                         EasyBotMove();
