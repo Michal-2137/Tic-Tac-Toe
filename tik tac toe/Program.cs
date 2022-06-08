@@ -270,15 +270,15 @@ internal class Program
             if (!placed)
             {
                 string[] arr = { field[0, 0], field[1, 1], field[2, 2] };
-                Pablo(true);
+                CheckSlant(true);
                 if (!placed)
                 {
                     arr[0] = field[0, 2];
                     arr[2] = field[2, 0];
-                    Pablo(false);
+                    CheckSlant(false);
                 }
 
-                void Pablo(bool f)
+                void CheckSlant(bool f)
                 {
                     short counter = 0;
                     short counter2 = 0;
