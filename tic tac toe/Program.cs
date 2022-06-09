@@ -6,6 +6,8 @@ internal class Program
 {
     #region Variables and Classes
 
+        static string sign = "X";
+        static string starts = "you 1st";
         static string wintext = "";
         static string winner = "";
         private static bool[,] chose = {{false, false, false}, {false, false, false}, {false, false, false}};
@@ -518,8 +520,6 @@ internal class Program
     static void Menu()
     {
         bool chosen = false;
-        string sign = "X";
-        string starts = "you 1st";
         void ChooseGameMode()
         {
             string[] gamemodes = { "easy bot", "medium bot", "hard mode", "2 players" };
@@ -596,36 +596,47 @@ internal class Program
     
     static void Main(string[] args)
     {
-        Menu();
-        Console.WriteLine("You can play with arrows/wasd and enter/spacebar");
-        Thread.Sleep(1000);
-        Console.WriteLine("Press anything to continue");
-        Console.ReadKey();
-        while (!ended)
+        Play();
+
+        void Play()
         {
-            PlayerMove("X");
-            WinCheck();
-            if (!ended) {
-                switch (mode)
-                {
-                    case "easy":
-                        EasyBotMove();
-                        break;
-                    case "medium":
-                        MediumBotMove();
-                        break;
-                    case "hard":
-                        HardBotMove();
-                        break;
-                    case "2 players":
-                        PlayerMove("O");
-                        break;
-                }
-                Thread.Sleep(1000);
+            Menu();
+            Console.WriteLine("You can play with arrows/wasd and enter/spacebar");
+            Thread.Sleep(1000);
+            Console.WriteLine("Press anything to continue");
+            Console.ReadKey();
+            while (!ended)
+            {
+                PlayerMove("X");
                 WinCheck();
+                if (!ended)
+                {
+                    switch (mode)
+                    {
+                        case "easy":
+                            EasyBotMove();
+                            break;
+                        case "medium":
+                            MediumBotMove();
+                            break;
+                        case "hard":
+                            HardBotMove();
+                            break;
+                        case "2 players":
+                            PlayerMove("O");
+                            break;
+                    }
+
+                    Thread.Sleep(1000);
+                    WinCheck();
+                }
             }
+
+            Print();
+            Console.ReadKey();
         }
-        Print();
-        Console.ReadKey();
+
+        string[] restart = { "Restart", "Exit" };
+        if (Lists.CreateList("Want to play again?", restart) == 0) Play();
     }
 }
