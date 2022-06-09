@@ -37,7 +37,7 @@ namespace CompassModKit.Lists
                         break;
                     case ConsoleKey.S:
                     case ConsoleKey.DownArrow:
-                        if (chose < elements.Length)
+                        if (chose < elements.Length-1)
                         {
                             chose++;
                         }
