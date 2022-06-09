@@ -659,7 +659,19 @@ internal class Program
             Console.ReadKey();
         }
 
-        string[] restart = { "Restart", "Exit" };
-        if (Lists.CreateList("Want to play again?", restart) == 0) Play();
+        bool exit = false;
+        while (!exit)
+        {
+            string[] restart = { "Restart", "Exit" };
+            switch (Lists.CreateList("Want to play again?", restart))
+            {
+                case 0:
+                    Play();
+                    break;
+                case 1:
+                    exit = true;
+                    break;
+            }
+        }
     }
 }
