@@ -1,4 +1,5 @@
-﻿using CompassModKit.Utilities.ConsoleUtil;
+﻿using System.Diagnostics;
+using CompassModKit.Utilities.ConsoleUtil;
 using CompassModKit.Lists;
 
 internal class Program
@@ -13,7 +14,7 @@ internal class Program
         static int y;
         static bool ended = false;
         static Random random = new Random();
-        static int mode = 1;
+        static string mode = "easy";
         static string bot = "O", player = "X";
         class Move
         {
@@ -349,8 +350,7 @@ internal class Program
         {
             for (int row = 0; row < 3; row++)
             {
-                if (b[row, 0] == b[row, 1] &&
-                    b[row, 1] == b[row, 2])
+                if (b[row, 0] == b[row, 1] && b[row, 1] == b[row, 2])
                 {
                     if (b[row, 0] == bot)
                         return +10;
@@ -360,8 +360,7 @@ internal class Program
             }
             for (int col = 0; col < 3; col++)
             {
-                if (b[0, col] == b[1, col] &&
-                    b[1, col] == b[2, col])
+                if (b[0, col] == b[1, col] && b[1, col] == b[2, col])
                 {
                     if (b[0, col] == bot)
                         return +10;
@@ -483,6 +482,7 @@ internal class Program
                 End();
             }
         }
+        
         if (fields[0,0] == fields[1,1] && fields[0,0] == fields[2,2] && fields[0,0] != " ")
         {
             winner = fields[0, 0];
@@ -517,8 +517,79 @@ internal class Program
     //This function chooses game mode
     static void Menu()
     {
-        string[] gamemodes = {"easy bot", "medium bot", "hard mode", "2 players"};
-        mode = Lists.CreateList("Choose Game Mode", gamemodes);
+        bool chosen = false;
+        string sign = "X";
+        string starts = "you 1st";
+        void ChooseGameMode()
+        {
+            string[] gamemodes = { "easy bot", "medium bot", "hard mode", "2 players" };
+            switch(Lists.CreateList("Choose Game Mode", gamemodes))
+            {
+                case 0:
+                    mode = "easy";
+                    break;
+                case 1:
+                    mode = "medium";
+                    break;
+                case 2:
+                    mode = "hard";
+                    break;
+                case 3:
+                    mode = "2 players";
+                    break;
+            }
+        }
+        void ChooseYourSign()
+        {
+            string[] signs = { "You play as: X", "You play as: O" };
+            switch (Lists.CreateList("Choose your sign", signs))
+            {
+                case 0:
+                    sign = "X";
+                    player = "X";
+                    bot = "O";
+                    break;
+                case 1:
+                    sign = "O";
+                    player = "O";
+                    bot = "X";
+                    break;
+            }
+        }
+        
+        void ChooseWhoStarts()
+        {
+            string[] starting = { "You first", "Opponent first" };
+            switch (Lists.CreateList("Who starts?", starting))
+            {
+                case 0:
+                    starts = "you 1st";
+                    break;
+                case 1:
+                    starts = "opponent 1st";
+                    break;
+            }
+        }
+
+        while (!chosen)
+        {
+            string[] menu = { "Play!", $"Choose your game mode. ({mode})", $"Choose your sign. ({sign})", $"Choose who starts. ({starts})" };
+            switch (Lists.CreateList("MENU", menu))
+            {
+                case 0:
+                    chosen = true;
+                    break;
+                case 1:
+                    ChooseGameMode();
+                    break;
+                case 2:
+                    ChooseYourSign();
+                    break;
+                case 3:
+                    ChooseWhoStarts();
+                    break;
+            }
+        }
     }
     
 
@@ -537,16 +608,16 @@ internal class Program
             if (!ended) {
                 switch (mode)
                 {
-                    case 0:
+                    case "easy":
                         EasyBotMove();
                         break;
-                    case 1:
+                    case "medium":
                         MediumBotMove();
                         break;
-                    case 2:
+                    case "hard":
                         HardBotMove();
                         break;
-                    case 3:
+                    case "2 players":
                         PlayerMove("O");
                         break;
                 }
