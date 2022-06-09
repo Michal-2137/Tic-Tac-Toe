@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
-using CompassModKit.Utilities.ConsoleUtil;
-using CompassModKit.Lists;
+using Compass.Utilities.ConsoleUtil;
+using Compass.Lists;
+using Core.Logging.ProofOfConcept;
+using Lib.Localization.Setup;
 
 internal class Program
 {
@@ -597,6 +599,9 @@ internal class Program
     
     static void Main(string[] args)
     {
+        Logging_POC.Setup();
+        LocalizationSetup.Setup();
+        
         Play();
 
         void Play()
