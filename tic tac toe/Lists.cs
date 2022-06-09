@@ -5,6 +5,7 @@ namespace CompassModKit.Lists
     {
         public static int CreateList(string title, string[] elements)
         {
+            Console.Clear();
             bool chosen = false;
             int chose = 0;
             while (!chosen)
