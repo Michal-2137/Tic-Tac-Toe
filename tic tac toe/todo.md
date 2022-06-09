@@ -1,0 +1,5 @@
+- [x] add multiplayer
+- [x] ability to choose cross or circle
+- [x] new input system
+- [x] medium mode
+- [x] hard mode

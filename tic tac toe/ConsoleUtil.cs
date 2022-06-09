@@ -8,7 +8,7 @@
 	    /// <param name="content">Text to print</param>
 	    /// <param name="foregroundColor">Color of text</param>
 	    /// <param name="backgroundColor">Color of background</param>
-	    public static void Write(string content, ConsoleColor foregroundColor = ConsoleColor.White, ConsoleColor backgroundColor = ConsoleColor.Black)
+	    public static void Write(string content, ConsoleColor foregroundColor = ConsoleColor.Black, ConsoleColor backgroundColor = ConsoleColor.White)
 	    {
 		    Console.ForegroundColor = foregroundColor;
 		    Console.BackgroundColor = backgroundColor;
@@ -22,7 +22,7 @@
 	    /// <param name="content">Text to print</param>
 	    /// <param name="foregroundColor">Color of text</param>
 	    /// <param name="backgroundColor">Color of background</param>
-    	public static void WriteLine(string content, ConsoleColor foregroundColor = ConsoleColor.White, ConsoleColor backgroundColor = ConsoleColor.Black)
+    	public static void WriteLine(string content, ConsoleColor foregroundColor = ConsoleColor.Black, ConsoleColor backgroundColor = ConsoleColor.White)
 		{
 			Console.ForegroundColor = foregroundColor;
 			Console.BackgroundColor = backgroundColor;
