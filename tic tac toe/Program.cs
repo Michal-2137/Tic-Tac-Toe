@@ -8,6 +8,7 @@ internal class Program
 
         static string sign = "X";
         static string starts = "you 1st";
+        static bool playerstarts = true;
         static string wintext = "";
         static string winner = "";
         private static bool[,] chose = {{false, false, false}, {false, false, false}, {false, false, false}};
@@ -600,14 +601,36 @@ internal class Program
 
         void Play()
         {
+            ended = false;
+            winner = "";
+            wintext = "";
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    fields[i, j] = " ";
+                }
+            }
             Menu();
             Console.WriteLine("You can play with arrows/wasd and enter/spacebar");
             Thread.Sleep(1000);
             Console.WriteLine("Press anything to continue");
             Console.ReadKey();
-            while (!ended)
+            if (starts == "opponent 1st")
             {
-                PlayerMove("X");
+                playerstarts = false;
+            }
+
+            while (!ended)
+            { 
+                if (playerstarts)
+                {
+                    PlayerMove(player);
+                }
+                else
+                {
+                    playerstarts = true;
+                }
                 WinCheck();
                 if (!ended)
                 {
@@ -623,7 +646,7 @@ internal class Program
                             HardBotMove();
                             break;
                         case "2 players":
-                            PlayerMove("O");
+                            PlayerMove(bot);
                             break;
                     }
 
