@@ -1,4 +1,5 @@
-﻿using CompassModKit.Utilities.ConsoleUtil;
+﻿using System.Reflection.Metadata;
+using CompassModKit.Utilities.ConsoleUtil;
 using CompassModKit.Lists;
 
 internal class Program
@@ -210,8 +211,10 @@ internal class Program
             int i = 0;
             while (i < 3 && !placed)
             {
-                int counter2 = 0;
                 int counter = 0;
+                int counter2 = 0;
+                int counter3 = 0;
+                int counter4 = 0;
                 for (short j=0;j<3;j++)
                 {
                     if (fields[i,j] == sign)
@@ -222,6 +225,15 @@ internal class Program
                     if (fields[i,j] == sign2)
                     {
                         counter2++;
+                    }
+                    if (fields[j,i] == sign)
+                    {
+                        counter3++;
+                    }
+
+                    if (fields[j,i] == sign2)
+                    {
+                        counter4++;
                     }
                 }
                 
@@ -236,26 +248,8 @@ internal class Program
                         }
                     }
                 }
-                i++;
-            }
-            i = 0;
-            while (i < 3 && !placed)
-            {
-                int counter2 = 0;
-                int counter = 0;
-                for (short j = 0; j < 3; j++)
-                {
-                    if (fields[j, i] == sign)
-                    {
-                        counter++;
-                    }
 
-                    if (fields[j, i] == sign2)
-                    {
-                        counter2++;
-                    }
-                }
-                if (counter == 2 && counter2 == 0)
+                if (counter3 == 2 && counter4 == 0)
                 {
                     for (int j = 0; j < 3; j++)
                     {
@@ -303,7 +297,7 @@ internal class Program
                         {
                             if (arr[j] == " ")
                             {
-                                arr[j] = "O";
+                                arr[j] = bot;
                                 placed = true;
                             }
                         }
@@ -323,10 +317,10 @@ internal class Program
                 }
             }
         }
-        Check("O", "X");
+        Check(bot, player);
         if (!placed) 
         {
-            Check("X", "O");
+            Check(player, bot);
         }
         if (!placed)
         {
