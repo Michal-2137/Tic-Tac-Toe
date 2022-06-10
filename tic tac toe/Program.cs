@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using CompassModKit.Utilities.ConsoleUtil;
+﻿using CompassModKit.Utilities.ConsoleUtil;
 using CompassModKit.Lists;
 
 internal class Program
@@ -21,7 +20,7 @@ internal class Program
         static string bot = "O", player = "X";
         class Move
         {
-            public int row, col;
+            public int botY, botX;
         };
 
         #endregion
@@ -341,7 +340,7 @@ internal class Program
     //With this function bot on hard mode moves
     static void HardBotMove()
     {
-        Boolean IsMovesLeft(string [,]fields)
+        bool IsMovesLeft(string [,]fields)
         {
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
@@ -351,55 +350,55 @@ internal class Program
         }
         int Evaluate(string [,]b)
         {
-            for (int row = 0; row < 3; row++)
+            for (int botY = 0; botY < 3; botY++)
             {
-                if (b[row, 0] == b[row, 1] && b[row, 1] == b[row, 2])
+                if (b[botY, 0] == b[botY, 1] && b[botY, 1] == b[botY, 2])
                 {
-                    if (b[row, 0] == bot)
-                        return +10;
-                    else if (b[row, 0] == player)
-                        return -10;
+                    if (b[botY, 0] == bot)
+                        return +1;
+                    else if (b[botY, 0] == player)
+                        return -1;
                 }
             }
-            for (int col = 0; col < 3; col++)
+            for (int botX = 0; botX < 3; botX++)
             {
-                if (b[0, col] == b[1, col] && b[1, col] == b[2, col])
+                if (b[0, botX] == b[1, botX] && b[1, botX] == b[2, botX])
                 {
-                    if (b[0, col] == bot)
-                        return +10;
+                    if (b[0, botX] == bot)
+                        return +1;
          
-                    else if (b[0, col] == player)
-                        return -10;
+                    else if (b[0, botX] == player)
+                        return -1;
                 }
             }
             if (b[0, 0] == b[1, 1] && b[1, 1] == b[2, 2])
             {
                 if (b[0, 0] == bot)
-                    return +10;
+                    return +1;
                 else if (b[0, 0] == player)
-                    return -10;
+                    return -1;
             }
             if (b[0, 2] == b[1, 1] && b[1, 1] == b[2, 0])
             {
                 if (b[0, 2] == bot)
-                    return +10;
+                    return +1;
                 else if (b[0, 2] == player)
-                    return -10;
+                    return -1;
             }
             return 0;
         }
-        int MiniMax(string [,]fields, int depth, Boolean isMax)
+        int MiniMax(string [,]fields, bool isMax)
         {
             int score = Evaluate(fields);
-            if (score == 10)
+            if (score == 1)
                 return score;
-            if (score == -10)
+            if (score == -1)
                 return score;
             if (IsMovesLeft(fields) == false)
                 return 0;
             if (isMax)
             {
-                int best = -1000;
+                int best = -100;
                 for (int i = 0; i < 3; i++)
                 {
                     for (int j = 0; j < 3; j++)
@@ -407,7 +406,7 @@ internal class Program
                         if (fields[i, j] == " ")
                         {
                             fields[i, j] = bot;
-                            best = Math.Max(best, MiniMax(fields, depth + 1, !isMax));
+                            best = Math.Max(best, MiniMax(fields, !isMax));
                             fields[i, j] = " ";
                         }
                     }
@@ -416,7 +415,7 @@ internal class Program
             }
             else
             {
-                int best = 1000;
+                int best = 100;
                 for (int i = 0; i < 3; i++)
                 {
                     for (int j = 0; j < 3; j++)
@@ -424,7 +423,7 @@ internal class Program
                         if (fields[i, j] == " ")
                         {
                             fields[i, j] = player;
-                            best = Math.Min(best, MiniMax(fields, depth + 1, !isMax));
+                            best = Math.Min(best, MiniMax(fields, !isMax));
                             fields[i, j] = " ";
                         }
                     }
@@ -434,10 +433,10 @@ internal class Program
         }
         Move FindBestMove(string [,]fields)
         {
-            int bestVal = -1000;
+            int bestVal = -100;
             Move bestMove = new Move();
-            bestMove.row = -1;
-            bestMove.col = -1;
+            bestMove.botY = -1;
+            bestMove.botX = -1;
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
@@ -445,12 +444,12 @@ internal class Program
                     if (fields[i, j] == " ")
                     {
                         fields[i, j] = bot;
-                        int moveVal = MiniMax(fields, 0, false);
+                        int moveVal = MiniMax(fields, false);
                         fields[i, j] = " ";
                         if (moveVal > bestVal)
                         {
-                            bestMove.row = i;
-                            bestMove.col = j;
+                            bestMove.botY = i;
+                            bestMove.botX = j;
                             bestVal = moveVal;
                         }
                     }
@@ -459,7 +458,7 @@ internal class Program
             return bestMove;
         }
         Move bestMove = FindBestMove(fields);
-        fields[bestMove.row, bestMove.col] = bot;
+        fields[bestMove.botY, bestMove.botX] = bot;
     }
     
     
@@ -649,7 +648,6 @@ internal class Program
                             PlayerMove(bot);
                             break;
                     }
-
                     Thread.Sleep(1000);
                     WinCheck();
                 }
