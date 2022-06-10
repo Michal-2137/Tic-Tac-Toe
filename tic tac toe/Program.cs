@@ -433,7 +433,7 @@ internal class Program
         }
         Move FindBestMove(string [,]fields)
         {
-            int bestVal = -100;
+            int bestValue = -100;
             Move bestMove = new Move();
             bestMove.botY = -1;
             bestMove.botX = -1;
@@ -444,13 +444,13 @@ internal class Program
                     if (fields[i, j] == " ")
                     {
                         fields[i, j] = bot;
-                        int moveVal = MiniMax(fields, false);
+                        int moveValue = MiniMax(fields, false);
                         fields[i, j] = " ";
-                        if (moveVal > bestVal)
+                        if (moveValue > bestValue)
                         {
                             bestMove.botY = i;
                             bestMove.botX = j;
-                            bestVal = moveVal;
+                            bestValue = moveValue;
                         }
                     }
                 }
