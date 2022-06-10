@@ -11,15 +11,13 @@ internal class Program
         static string endtext = "";
         private static bool[,] chose = {{false, false, false}, {false, false, false}, {false, false, false}};
         static string[,] fields = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
-        static int x;
-        static int y;
         static bool ended = false;
         static Random random = new Random();
         static string mode = "easy";
         static string bot = "O", player = "X";
         class Move
         {
-            public int botY, botX;
+            public int y, x;
         };
 
         #endregion
@@ -118,6 +116,7 @@ internal class Program
     //This function let player move
     static void PlayerMove(string sign)
     {
+        Move move = new Move();
         bool placed = false;
         while (!placed)
         {
@@ -161,16 +160,16 @@ internal class Program
                         break;
                     case ConsoleKey.Spacebar:
                     case ConsoleKey.Enter:
-                        x = choseX;
-                        y = choseY;
+                        move.x = choseX;
+                        move.y = choseY;
                         choosen = true;
                         break;
                 }
             }
             chose[choseY, choseX] = false;
-            if (fields[y, x] == " ")
+            if (fields[move.y, move.x] == " ")
             {
-                fields[y, x] = sign;
+                fields[move.y, move.x] = sign;
                 placed = true;
             }
             else
@@ -186,16 +185,16 @@ internal class Program
     //With this function bot on easy mode moves
     static void EasyBotMove()
     {
-        int botX;
-        int botY;
+        int x;
+        int y;
         bool botis = false;
         while (!botis)
         {
-            botX = random.Next(0, 3);
-            botY = random.Next(0, 3);
-            if (fields[botY, botX] == " ")
+            x = random.Next(0, 3);
+            y = random.Next(0, 3);
+            if (fields[y, x] == " ")
             {
-                fields[botY, botX] = bot;
+                fields[y, x] = bot;
                 botis = true;
             }
         }
@@ -387,8 +386,8 @@ internal class Program
         {
             int bestValue = -100;
             Move bestMove = new Move();
-            bestMove.botY = -1;
-            bestMove.botX = -1;
+            bestMove.y = -1;
+            bestMove.x = -1;
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
@@ -400,8 +399,8 @@ internal class Program
                         fields[i, j] = " ";
                         if (moveValue > bestValue)
                         {
-                            bestMove.botY = i;
-                            bestMove.botX = j;
+                            bestMove.y = i;
+                            bestMove.x = j;
                             bestValue = moveValue;
                         }
                     }
@@ -410,7 +409,7 @@ internal class Program
             return bestMove;
         }
         Move bestMove = FindBestMove(fields);
-        fields[bestMove.botY, bestMove.botX] = bot;
+        fields[bestMove.y, bestMove.x] = bot;
     }
     
     
