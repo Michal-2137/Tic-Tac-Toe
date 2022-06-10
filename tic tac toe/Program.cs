@@ -8,8 +8,7 @@ internal class Program
         static string sign = "X";
         static string starts = "you 1st";
         static bool playerstarts = true;
-        static string wintext = "";
-        static string winner = "";
+        static string endtext = "";
         private static bool[,] chose = {{false, false, false}, {false, false, false}, {false, false, false}};
         static string[,] fields = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
         static int x;
@@ -112,7 +111,7 @@ internal class Program
             Console.Write(fields[2,2]);
         }
         Console.Write(" \n\n");
-        Console.WriteLine(wintext);
+        Console.WriteLine(endtext);
     }
     
     
@@ -340,53 +339,6 @@ internal class Program
     //With this function bot on hard mode moves
     static void HardBotMove()
     {
-        bool IsMovesLeft(string [,]fields)
-        {
-            for (int i = 0; i < 3; i++)
-                for (int j = 0; j < 3; j++)
-                    if (fields[i, j] == " ")
-                        return true; 
-            return false;
-        }
-        int Evaluate(string [,]b)
-        {
-            for (int botY = 0; botY < 3; botY++)
-            {
-                if (b[botY, 0] == b[botY, 1] && b[botY, 1] == b[botY, 2])
-                {
-                    if (b[botY, 0] == bot)
-                        return +1;
-                    else if (b[botY, 0] == player)
-                        return -1;
-                }
-            }
-            for (int botX = 0; botX < 3; botX++)
-            {
-                if (b[0, botX] == b[1, botX] && b[1, botX] == b[2, botX])
-                {
-                    if (b[0, botX] == bot)
-                        return +1;
-         
-                    else if (b[0, botX] == player)
-                        return -1;
-                }
-            }
-            if (b[0, 0] == b[1, 1] && b[1, 1] == b[2, 2])
-            {
-                if (b[0, 0] == bot)
-                    return +1;
-                else if (b[0, 0] == player)
-                    return -1;
-            }
-            if (b[0, 2] == b[1, 1] && b[1, 1] == b[2, 0])
-            {
-                if (b[0, 2] == bot)
-                    return +1;
-                else if (b[0, 2] == player)
-                    return -1;
-            }
-            return 0;
-        }
         int MiniMax(string [,]fields, bool isMax)
         {
             int score = Evaluate(fields);
@@ -462,57 +414,79 @@ internal class Program
     }
     
     
+    //This function checks if there are empty fields
+    static bool IsMovesLeft(string [,]fields)
+    {
+        for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            if (fields[i, j] == " ")
+                return true; 
+        return false;
+    }
+    
+    
+    //This function checks if someone got 3 in row
+    static int Evaluate(string [,]b)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (b[i, 0] == b[i, 1] && b[i, 1] == b[i, 2])
+            {
+                if (b[i, 0] == bot)
+                    return +1;
+                else if (b[i, 0] == player)
+                    return -1;
+            }
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            if (b[0, i] == b[1, i] && b[1, i] == b[2, i])
+            {
+                if (b[0, i] == bot)
+                    return +1;
+         
+                else if (b[0, i] == player)
+                    return -1;
+            }
+        }
+        if (b[0, 0] == b[1, 1] && b[1, 1] == b[2, 2])
+        {
+            if (b[0, 0] == bot)
+                return +1;
+            else if (b[0, 0] == player)
+                return -1;
+        }
+        if (b[0, 2] == b[1, 1] && b[1, 1] == b[2, 0])
+        {
+            if (b[0, 2] == bot)
+                return +1;
+            else if (b[0, 2] == player)
+                return -1;
+        }
+        return 0;
+    }
+    
+    
     //This function checks if someone won
     static void WinCheck()
     {
-        void End()
+        switch (Evaluate(fields))
         {
-            wintext = $"the winner is {winner}!";
+            case -1:
+                endtext = "You won!";
+                ended = true;
+                break;
+            case 1:
+                endtext = "You lost!";
+                ended = true;
+                break;
+        }
+        if (!IsMovesLeft(fields) && !ended)
+        {
+            endtext = "Draw!";
             ended = true;
         }
-
-        for (int i = 0; i < 3; i++)
-        {
-            if (fields[i,0] == fields[i,1] && fields[i,0] == fields[i,2] && fields[i,0] != " ")
-            {
-                winner = fields[i, 0];
-                End();
-            }
-            if (fields[0,i] == fields[1,i] && fields[0,i] == fields[2,i] && fields[0,i] != " ")
-            {
-                winner = fields[0, i];
-                End();
-            }
-        }
-        
-        if (fields[0,0] == fields[1,1] && fields[0,0] == fields[2,2] && fields[0,0] != " ")
-        {
-            winner = fields[0, 0];
-            End();
-        }
-
-        if (fields[0,2] == fields[1,1] && fields[0,2] == fields[2,0] && fields[0,2] != " ")
-        {
-            winner = fields[0, 2];
-            End();
-        }
-        
-        if (!ended)
-        {
-            bool draw = true;
-            foreach (string f in fields)
-            {
-                if (f == " ")
-                {
-                    draw = false;
-                }
-            }
-            if (draw)
-            {
-                wintext = "Draw!";
-                ended = true;
-            }
-        }
+        Print();
     }
 
     
@@ -600,9 +574,8 @@ internal class Program
 
         void Play()
         {
+            endtext = "";
             ended = false;
-            winner = "";
-            wintext = "";
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
